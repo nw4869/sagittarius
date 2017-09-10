@@ -49,6 +49,7 @@ THIRD_PARTY_APPS = [
     'allauth',  # registration
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
+    'rest_framework', # api
 ]
 
 # Apps specific for this project go here.
@@ -56,6 +57,7 @@ LOCAL_APPS = [
     # custom users app
     'sagittarius.users.apps.UsersConfig',
     # Your stuff: custom apps go here
+    'sagittarius.post'
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -280,3 +282,9 @@ ADMIN_URL = r'^admin/'
 
 # Your common stuff: Below this line define 3rd party library settings
 # ------------------------------------------------------------------------------
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+    ],
+    'PAGE_SIZE': 10
+}
