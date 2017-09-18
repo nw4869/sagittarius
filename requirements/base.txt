@@ -35,7 +35,7 @@ django-allauth==0.32.0
 psycopg2==2.7.3
 
 # Unicode slugification
-awesome-slugify==1.6.5
+# awesome-slugify==1.6.5
 
 # Time zones support
 pytz==2017.2
