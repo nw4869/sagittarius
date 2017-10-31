@@ -78,3 +78,5 @@ CELERY_ALWAYS_EAGER = True
 
 # Your local stuff: Below this line define 3rd party library settings
 # ------------------------------------------------------------------------------
+# 允许跨域，用于前端npm dev
+CORS_ORIGIN_ALLOW_ALL = True

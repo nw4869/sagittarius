@@ -3,7 +3,7 @@ from django.db import models
 
 class PublicPostManager(models.Manager):
     def get_queryset(self):
-        return super(PublicPostManager, self).get_queryset().filter(private=True)
+        return super(PublicPostManager, self).get_queryset().filter(private=False)
 
 
 class Post(models.Model):
@@ -12,9 +12,10 @@ class Post(models.Model):
 
     private = models.BooleanField('私密', default=False)
 
-    created = models.DateField('创建时间', auto_now_add=True)
-    updated = models.DateField('更新时间', auto_now=True)
+    created = models.DateTimeField('创建时间', auto_now_add=True)
+    updated = models.DateTimeField('更新时间', auto_now=True)
 
+    objects = models.Manager()
     public = PublicPostManager()
 
     def __str__(self):

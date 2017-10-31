@@ -4,13 +4,15 @@ from .models import *
 
 
 class PostSerializer(serializers.ModelSerializer):
-    def __init__(self, public_only=True, *args, **kwargs):
+    url = serializers.HyperlinkedIdentityField(view_name='posts-detail', read_only=True)
+
+    def __init__(self, *args, public_only=True, **kwargs):
         super(PostSerializer, self).__init__(*args, **kwargs)
 
         if public_only:
             # TODO
             pass
 
-    class Meat:
+    class Meta:
         model = Post
-        fields = '__all__'
+        fields = ('url', 'id', 'title', 'content', 'created')

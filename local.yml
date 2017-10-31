@@ -3,6 +3,9 @@ version: '2'
 volumes:
   postgres_data_dev: {}
   postgres_backup_dev: {}
+  node_modules: {}
+  python_site_packages: {}
+
 
 services:
   postgres:
@@ -25,6 +28,7 @@ services:
       - USE_DOCKER=yes
     volumes:
       - .:/app
+      - python_site_packages:/usr/local/lib/python3.5/site-packages
     ports:
       - "8000:8000"
 
@@ -39,6 +43,19 @@ services:
       - POSTGRES_USER=sagittarius
     volumes:
       - .:/app
+      - python_site_packages:/usr/local/lib/python3.5/site-packages
+
+
+  vue:
+    build:
+      context: .
+      dockerfile: compose/vue/Dockerfile-dev
+    command: /start-dev.sh
+    volumes:
+      - ./frontend:/app
+      - node_modules:/app/node_modules
+    ports:
+      - "8080:8080"
 
 
 

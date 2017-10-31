@@ -1,0 +1,9 @@
+FROM node
+
+RUN npm install -g cnpm --registry=https://registry.npm.taobao.org
+
+COPY ./compose/vue/start-dev.sh /start-dev.sh
+RUN sed -i 's/\r//' /start-dev.sh
+RUN chmod +x /start-dev.sh
+
+WORKDIR /app

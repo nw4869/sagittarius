@@ -9,6 +9,8 @@ Vue.config.productionTip = false
 
 Vue.use(VueResource)
 
+Vue.use(require('vue-moment'))
+
 Vue.filter('uppercase', function (value) {
   return value.toUpperCase()
 })

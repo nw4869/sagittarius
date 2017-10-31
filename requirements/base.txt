@@ -52,3 +52,6 @@ celery==4.1.0
 
 # Your custom requirements go here
 djangorestframework
+
+# dev 跨域
+django-cors-headers
