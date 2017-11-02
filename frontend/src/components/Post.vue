@@ -27,7 +27,7 @@
     },
     methods: {
       fetchData () {
-        this.$http.get('//localhost:8000/api/posts/' + this.$route.params.id + '/').then(function (response) {
+        this.$http.get('/api/posts/' + this.$route.params.id + '/').then(function (response) {
 //          console.log(response.data)
           this.post = response.data
         })

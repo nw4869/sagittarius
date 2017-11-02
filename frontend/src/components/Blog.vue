@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     fetchData () {
-      this.$http.get('//localhost:8000/api/posts/').then(function (response) {
+      this.$http.get('/api/posts/').then(function (response) {
         console.log(response.data.results)
         this.posts = response.data.results
       })
