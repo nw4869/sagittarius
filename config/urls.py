@@ -9,9 +9,6 @@ from . import api_urls
 
 
 urlpatterns = [
-    ################## for vue #################
-    url(r'^.*$', TemplateView.as_view(template_name="index.html")),
-
     ################## for django #################
     # url(r'^home/$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
     # url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
@@ -24,7 +21,10 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
 
     # Your stuff: custom urls includes go here
-    url(r'^api/', include(api_urls))
+    url(r'^api/', include(api_urls)),
+
+    ################## for vue #################
+    url(r'^.*$', TemplateView.as_view(template_name="index.html")),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
