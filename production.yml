@@ -3,6 +3,8 @@ version: '2'
 volumes:
   postgres_data: {}
   postgres_backup: {}
+  node_modules: {}
+  python_site_packages: {}
 
 services:
   postgres:
@@ -21,6 +23,8 @@ services:
       - redis
     command: /gunicorn.sh
     env_file: .env
+    volumes:
+      - python_site_packages:/usr/local/lib/python3.5/site-packages
 
   nginx:
     build: ./compose/nginx
@@ -65,6 +69,8 @@ services:
      - postgres
      - redis
     command: celery -A sagittarius.taskapp worker -l INFO
+    volumes:
+      - python_site_packages:/usr/local/lib/python3.5/site-packages
 
   celerybeat:
     build:
@@ -75,4 +81,6 @@ services:
       - postgres
       - redis
     command: celery -A sagittarius.taskapp beat -l INFO
+    volumes:
+      - python_site_packages:/usr/local/lib/python3.5/site-packages
 
