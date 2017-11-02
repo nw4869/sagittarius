@@ -9,7 +9,7 @@ from . import api_urls
 
 
 urlpatterns = [
-    url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
+    url(r'^home/$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
     url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
 
     # Django Admin, use {% url 'admin:index' %}

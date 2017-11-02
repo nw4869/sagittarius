@@ -5,6 +5,7 @@ volumes:
   postgres_backup: {}
   node_modules: {}
   python_site_packages: {}
+  frontend_dist_files: {}
 
 services:
   postgres:
@@ -21,10 +22,21 @@ services:
     depends_on:
       - postgres
       - redis
+      - vue
     command: /gunicorn.sh
     env_file: .env
     volumes:
       - python_site_packages:/usr/local/lib/python3.5/site-packages
+      - frontend_dist_files:/app/frontend/dist
+
+  vue:
+    build:
+      context: .
+      dockerfile: ./compose/vue/Dockerfile
+    volumes:
+      - frontend_dist_files:/app/dist
+      - node_modules:/app/node_modules
+
 
   nginx:
     build: ./compose/nginx
