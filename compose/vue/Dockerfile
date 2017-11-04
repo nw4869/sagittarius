@@ -1,7 +1,5 @@
 FROM node
 
-RUN npm install -g cnpm --registry=https://registry.npm.taobao.org
-
 COPY ./compose/vue/build_and_wait.sh /build_and_wait.sh
 RUN sed -i 's/\r//' /build_and_wait.sh
 RUN chmod +x /build_and_wait.sh
