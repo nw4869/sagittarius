@@ -67,6 +67,9 @@ node_modules/
 # virtual environments
 .env
 
+# ssl dhparams.pem
+compose/nginx/dhparams.pem
+
 # User-uploaded media
 sagittarius/media/
 
