@@ -15,7 +15,7 @@ export default {
     PostList
   },
   async asyncData ({ app }) {
-    let { data } = await app.$axios.get('/api/posts/')
+    let { data } = await app.$axios.get('/posts/')
     return {
       posts: data.results
     }

@@ -20,7 +20,7 @@ export default {
     moment
   },
   async asyncData ({ app, params }) {
-    let { data } = await app.$axios.get(`/api/posts/${params.post}/`)
+    let { data } = await app.$axios.get(`/posts/${params.post}/`)
     return {
       post: data
     }

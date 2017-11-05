@@ -35,7 +35,8 @@ module.exports = {
         })
       }
     },
-    vendor: ['axios']
+    vendor: ['axios'],
+    publicPath: '/static/'
   },
 
   plugins: [

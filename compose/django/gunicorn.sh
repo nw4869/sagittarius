@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # waiting for frontend static file to build
-DIST_DIR_BUILD_DONE_FLAG=/app/frontend/dist/__BUILD_DONE__
+DIST_DIR_BUILD_DONE_FLAG=/app/frontend/dist_shared/__BUILD_DONE__
 while [ ! -f $DIST_DIR_BUILD_DONE_FLAG ] ;
 do
 	echo waiting for frontend static file to build
