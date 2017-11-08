@@ -95,60 +95,60 @@ export default {
     },
 
     personalRecover: function(event) {
-    var text = 'hello!'
-    var msg = ethUtil.bufferToHex(new Buffer(text, 'utf8'))
-    // var msg = '0x1' // hexEncode(text)
-    console.log(msg)
-    var from = web3.eth.accounts[0]
+      var text = terms
+      var msg = ethUtil.bufferToHex(Buffer.from(text, 'utf8'))
+      // var msg = '0x1' // hexEncode(text)
+      console.log(msg)
+      var from = web3.eth.accounts[0]
 
-    /*  web3.personal.sign not yet implemented!!!
-    *  We're going to have to assemble the tx manually!
-    *  This is what it would probably look like, though:
-      web3.personal.sign(msg, from) function (err, result) {
-        if (err) return console.error(err)
-        console.log('PERSONAL SIGNED:' + result)
-      })
-    */
+      /*  web3.personal.sign not yet implemented!!!
+      *  We're going to have to assemble the tx manually!
+      *  This is what it would probably look like, though:
+        web3.personal.sign(msg, from) function (err, result) {
+          if (err) return console.error(err)
+          console.log('PERSONAL SIGNED:' + result)
+        })
+      */
 
-    console.log('CLICKED, SENDING PERSONAL SIGN REQ')
-    var params = [msg, from]
-    var method = 'personal_sign'
+      console.log('CLICKED, SENDING PERSONAL SIGN REQ')
+      var params = [msg, from]
+      var method = 'personal_sign'
 
-    web3.currentProvider.sendAsync({
-      method,
-      params,
-      from,
-    }, function (err, result) {
-      if (err) return console.error(err)
-      if (result.error) return console.error(result.error)
-      console.log('PERSONAL SIGNED:' + JSON.stringify(result.result))
-
-      console.log('recovering...')
-      const msgParams = { data: msg }
-      msgParams.sig = result.result
-
-      method = 'personal_ecRecover'
-      var params = [msg, result.result]
       web3.currentProvider.sendAsync({
         method,
         params,
         from,
       }, function (err, result) {
-        var recovered = result.result
-        console.log('ec recover called back:')
-        console.dir({ err, recovered })
         if (err) return console.error(err)
         if (result.error) return console.error(result.error)
+        console.log('PERSONAL SIGNED:' + JSON.stringify(result.result))
+
+        console.log('recovering...')
+        const msgParams = { data: msg }
+        msgParams.sig = result.result
+
+        method = 'personal_ecRecover'
+        var params = [msg, result.result]
+        web3.currentProvider.sendAsync({
+          method,
+          params,
+          from,
+        }, function (err, result) {
+          var recovered = result.result
+          console.log('ec recover called back:')
+          console.dir({ err, recovered })
+          if (err) return console.error(err)
+          if (result.error) return console.error(result.error)
 
 
-        if (recovered === from ) {
-          console.log('Successfully ecRecovered signer as ' + from)
-        } else {
-          console.log('Failed to verify signer when comparing ' + result + ' to ' + from)
-        }
+          if (recovered === from ) {
+            console.log('Successfully ecRecovered signer as ' + from)
+          } else {
+            console.log('Failed to verify signer when comparing ' + result + ' to ' + from)
+          }
 
+        })
       })
-    })
 
     }
   }
