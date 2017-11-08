@@ -79,3 +79,4 @@ staticfiles/
 
 .cache/
 
+frontend/.nuxt
