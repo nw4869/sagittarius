@@ -6,6 +6,7 @@ from .serializers import *
 
 class PostViewSet(viewsets.ModelViewSet):
     serializer_class = PostSerializer
+    ordering = （'-created', )
 
     def can_read_all_posts(self):
         return self.request.user.is_superuser
