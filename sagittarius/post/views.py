@@ -6,7 +6,7 @@ from .serializers import *
 
 class PostViewSet(viewsets.ModelViewSet):
     serializer_class = PostSerializer
-    ordering = ('-updated')
+    ordering = ('-updated', )
     filter_backends = (filters.SearchFilter, filters.OrderingFilter,)
     ordering_fields = ('updated', 'created')
     search_fields = ('title', 'content')
