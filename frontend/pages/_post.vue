@@ -6,7 +6,7 @@
         <time>{{ post.created | moment("dddd, MMMM Do YYYY, HH:mm") }}</time>
       </header>
       <div id="content" class="content">
-          {{ post.content }}
+          <vue-markdown :source='post.content'/>
       </div>
     </article>
   </div>
@@ -14,10 +14,12 @@
 
 <script>
 import moment from 'moment'
+import VueMarkdown from 'vue-markdown'
 
 export default {
   components: {
-    moment
+    moment,
+    VueMarkdown
   },
   async asyncData ({ app, params }) {
     let { data } = await app.$axios.get(`/posts/${params.post}/`)
@@ -48,3 +50,4 @@ header {
   margin: 12px 0 12px;
 }
 </style>
+

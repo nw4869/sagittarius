@@ -1,11 +1,14 @@
 FROM node
 
-COPY ./compose/vue/build_and_wait.sh /build_and_wait.sh
-RUN sed -i 's/\r//' /build_and_wait.sh
-RUN chmod +x /build_and_wait.sh
+COPY ./compose/vue/copy.sh /copy.sh
+RUN sed -i 's/\r//' /copy.sh
+RUN chmod +x /copy.sh
 
 COPY ./frontend /app
 
 WORKDIR /app
 
-CMD /build_and_wait.sh
+RUN npm install && npm run build
+
+CMD /copy.sh
+

@@ -46,7 +46,7 @@ services:
 
       - certbot
     environment:
-      - MY_DOMAIN_NAME=elpam.me
+      - MY_DOMAIN_NAME=e1pam.me
 
     ports:
       - "0.0.0.0:80:80"
@@ -58,7 +58,7 @@ services:
 
   certbot:
     image: quay.io/letsencrypt/letsencrypt
-    command: bash -c "sleep 6 && certbot certonly -n --standalone -d elpam.me --agree-tos --email nw4869@gmail.com --server https://acme-v01.api.letsencrypt.org/directory --rsa-key-size 4096 --verbose --keep-until-expiring --preferred-challenges http-01"
+    command: bash -c "sleep 6 && certbot certonly -n --standalone -d e1pam.me --agree-tos --email nw4869@gmail.com --server https://acme-v01.api.letsencrypt.org/directory --rsa-key-size 4096 --verbose --keep-until-expiring --preferred-challenges http-01"
     entrypoint: ""
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt

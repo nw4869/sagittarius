@@ -22,8 +22,8 @@
     "jquery": "1.9.1",
     "nuxt": "^1.0.0-rc11",
     "popper.js": "^1.12.3",
-    "vue-moment": "^2.1.0",
-    "web3": "^0.20.2"
+    "vue-markdown": "^2.2.4",
+    "vue-moment": "^2.1.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
