@@ -53,5 +53,9 @@ module.exports = {
 
   axios: {
     // proxyHeaders: false
+    init(axios, ctx) {
+      axios.defaults.xsrfCookieName = 'csrftoken'
+      axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+    }
   }
 }
